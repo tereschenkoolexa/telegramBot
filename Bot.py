@@ -1,4 +1,5 @@
 import telebot
+import sys
 
 bot = telebot.TeleBot('5714768365:AAEetAVNSL3mUkkyBgWrKCq1y-xkUVF5WG0')
 
@@ -10,10 +11,11 @@ def start(message):
 @bot.message_handler()
 def get_user_text(message):
     try:
-        if message.via_bot.is_bot == True:
-            bot.delete_message(message.chat.id, message.id)
+        if message.via_bot:
+            if message.via_bot.is_bot:
+                bot.delete_message(message.chat.id, message.id)
     except:
-        print("An exception occurred")
+        print("Oops! occurred.")
 
 
 
